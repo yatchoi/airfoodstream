@@ -6,8 +6,17 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/stream', function(req, res, next) {
-  res.render('stream');
+router.get('/stream/:id', function(req, res, next) {
+  var key = 'server-' + req.param('id');
+
+  if (serverMap[key] == null) {
+    return false;
+  }
+
+  port = serverMap[key].options.port;
+  console.log("Streaming from port: " + port);
+
+  res.render('stream', {port: port});
 });
 
 module.exports = router;
