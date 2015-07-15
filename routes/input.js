@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Store = require('../lib/store');
-var SocketServer = require('../lib/socketServer');
+var createSocketServer = require('../lib/socketServer');
 
 var store = new Store();
 
@@ -58,7 +58,7 @@ router.post('/:id/stream', function(req, res) {
   var socketServer;
 
   if (serverMap[key] == null) {
-    socketServer = new SocketServer();
+    socketServer = createSocketServer();
     console.log("Creating new socketServer at port: " + socketServer.options.port);
     serverMap[key] = socketServer;
   }
