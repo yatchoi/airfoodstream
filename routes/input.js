@@ -3,9 +3,8 @@ var router = express.Router();
 var Store = require('../lib/store');
 var createSocketServer = require('../lib/socketServer');
 
-var store = new Store();
-
-// wow global variable
+// wow global variables
+store = new Store();
 serverMap = {};
 
 // var socketServer = new (require('ws').Server)({port: 8084}),

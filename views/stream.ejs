@@ -39,5 +39,14 @@
     var canvas = document.getElementById('videoCanvas');
     var player = new jsmpeg(client, {canvas:canvas});
   </script>
+
+  <table>
+    <% for (key in data) { %>
+      <tr>
+        <td><%= key %></td>
+        <td><%= data[key] %></td>
+      </tr>
+    <% } %>
+  </table>
 </body>
 </html>

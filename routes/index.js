@@ -7,16 +7,17 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/stream/:id', function(req, res, next) {
-  var key = 'server-' + req.param('id');
+  var id = req.params.id;
+  var key = 'server-' + id;
 
   if (serverMap[key] == null) {
-    return false;
+    return res.send(404);
   }
 
   port = serverMap[key].options.port;
   console.log("Streaming from port: " + port);
 
-  res.render('stream', {port: port});
+  res.render('stream', { port: port, data: store.getLast(id) });
 });
 
 module.exports = router;
